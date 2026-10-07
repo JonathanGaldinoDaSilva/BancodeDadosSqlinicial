@@ -1,0 +1,11 @@
+SELECT name from sys.tables;
+
+insert into TelefonesJogadores (id_jogador, telefone)
+VALUES
+(1, '16998998969'),
+(2, '16998998989'),
+(3, '16998998945'),
+(4, '16998998932'),
+(5, '16998998956')
+
+go
