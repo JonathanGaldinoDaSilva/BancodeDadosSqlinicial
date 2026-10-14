@@ -1,0 +1,74 @@
+select name as Banco_De_Dados --selecion
+from sys.databases -- selecionandotodos os bancos de dados existentes no servidor 
+order by name; -- ordenando todos os bancos de dados
+
+use DBJonathanGaldino;
+GO
+
+select name from sys.tables;
+GO
+
+create TABLE Estudantes (
+    IdEstudantes Int PRIMARY KEY,
+    Nome Varchar(100) NOT NULL,
+    Turma Varchar (50) not null,
+    Apelido VARCHAR(30)
+);
+
+create table videos(
+    IdVideo int PRIMARY KEY,
+    Titulo VARCHAR(100) not null,
+    descricao varchar(255) NOT NULL,
+    data_publicacao date not null,
+    duracao time not null,
+    matricula_estudante int not null,
+    FOREIGN KEY (matricula_estudante) REFERENCES Estudantes(IdEstudantes)
+)
+
+-- inserindo dados na tabela de estudantes
+
+INSERT INTO Estudantes (IdEstudantes, Nome, Turma, Apelido)
+VALUES
+
+(1, 'peter jack',  '1E', 'he-man'),
+(2, 'peter',  '2E', 'aestic'),
+(3, 'jack',  '1C', 'zé-lasanha'),
+(4, 'pafuncio',  '2B', 'hipopótimus-prime'),
+(5, 'Pei Domole',  '1F', 'gafarrão'),
+(6, 'Jacinto',  '2A', 'tyrulipe'),
+(7, 'diacorni',  '3E', 'garuen'),
+(8, 'peter park',  'R4', 'formigão'),
+(9, 'gororó',  '1X', 'hulk'),
+(10, 'pedruu',  '2A', 'hcarudo');
+
+SELECT * from Estudantes;
+
+INSERT INTO videos (IdVideo, Titulo, Descricao, data_publicacao, Duracao, matricula_estudante)
+VALUES
+(1, 'Teia de Dados','Homem-Aranha I', '2023-01-15', '00:45:00', 1),
+(2, 'Amor e Ação','Mary Jane II', '2023-02-20', '00:50:00', 2),
+(3, 'Homem de Ferro: Ascensão','Tony Stark III', '2023-03-10', '01:30:00', 3),
+(4, 'Agente Secreta','Natasha Romanoff IV', '2023-04-05', '01:15:00', 4),
+(5, 'Deus do Trovão','Thor Odinson V', '2023-05-12', '01:20:00', 5),
+(6, 'Cavaleiro das Trevas','Bruce Wayne VI', '2023-06-18', '01:40:00', 6),
+(7, 'O Homem de Aço','Clark Kent VII', '2023-07-22', '01:25:00', 7),
+(8, 'A Princesa Guerreira','Diana Prince VIII', '2023-08-30', '01:35:00', 8),
+(9, 'Velocidade Extrema','Barry Allen IX', '2023-09-14', '01:10:00', 9),
+(10, 'Rei dos Mares','Arthur Curry X', '2023-10-05', '01:50:00', 10);
+
+Select * from videos;
+
+/* alterar dados de uma linha com update */
+UPDATE Estudantes
+SET Apelido = 'Aranha'
+WHERE IdEstudantes = 1 -- alterando o apelido do estudantecom ID 1 para "aranha"
+
+select -- responsável por selecionar os dados das tabelas videos
+
+v.Titulo, -- seleciona o titulo do video da tabela Estudantes e renomeia a coluna como autor
+e.Nome as autor, -- seleciona o nome do estudante da tabela Estudantes e renomeia a coluna como autor
+e.Apelido as heroi, -- seleciona o apelido do estudante da tabela Estudantes e renomeia a coluna como heroi
+v.Duracao, --seleciona a duração do vídeo da tabela videos e renomeia como
+from videos as v -- from videos AS v seleciona a tabela videos e renomeia como v
+INNER JOIN Estudantes as e -- INNER JOIN  Etudantes AS e seleciona a tabela estudantese renomeia como e
+on v.matricula_Estudantes = e.IdEstudantes;

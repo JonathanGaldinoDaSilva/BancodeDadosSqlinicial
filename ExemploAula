@@ -1,11 +1,29 @@
-SELECT name from sys.tables;
+SELECT name as banco_de_dados -- selecionando o nome dos bancos de dados
+from sys.databases -- selecionando todos os bancos de dados existentes no servidor
+ORDER BY name; --ordenando todos os bancos de dados
 
-insert into TelefonesJogadores (id_jogador, telefone)
-VALUES
-(1, '16998998969'),
-(2, '16998998989'),
-(3, '16998998945'),
-(4, '16998998932'),
-(5, '16998998956')
+USE JonathanGaldino
+GO
 
-go
+select name from sys.tables -- selecionando o nome das tabelas
+GO
+-- where type - 'U' -- filtrando apenas as tabelas do tipo usuario
+
+/* localizar dados na tabela */
+
+SELECT name as Tabela -- selecionando o nome das tabelas
+from sys.databases 
+ORDER BY name; 
+
+SELECT * from Jogadores; -- seleciona todos os dados da tabela jogadores
+
+-- para localizar dados especificos dentro de uma tabela por exemplo telefone, voce pode usar a seguinte consulta:
+
+SELECT * from TelefonesJogadores;
+
+-- para localizar apenas algumas colunas.
+select nome_completo, apelido, turma
+from Jogadores -- seleciona apenas as colunas nome_completo, apelido e turma da tabela Jogadores
+
+-- para ver somente os 3 primeiros registros da tabela
+SELECT top(50) * from Jogadores -- seleciona os 3 primeiros registros da tabela Jogadores
