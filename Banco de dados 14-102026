@@ -63,8 +63,8 @@ UPDATE Estudantes
 SET Apelido = 'Aranha'
 WHERE IdEstudantes = 1 -- alterando o apelido do estudantecom ID 1 para "aranha"
 
-select -- responsável por selecionar os dados das tabelas videos
 
+select -- responsável por selecionar os dados das tabelas videos e estudantes
 v.Titulo, -- seleciona o titulo do video da tabela Estudantes e renomeia a coluna como autor
 e.Nome as autor, -- seleciona o nome do estudante da tabela Estudantes e renomeia a coluna como autor
 e.Apelido as heroi, -- seleciona o apelido do estudante da tabela Estudantes e renomeia a coluna como heroi
